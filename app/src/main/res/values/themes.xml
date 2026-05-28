@@ -1,8 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Mininetflix" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/netflix_red</item>
+        <item name="colorOnPrimary">@color/netflix_text_primary</item>
+        <item name="android:windowBackground">@color/netflix_black</item>
+        <item name="android:statusBarColor">@color/netflix_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:navigationBarColor">@color/netflix_black</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+    <style name="ShapeAppearance.MiniNetflix.PosterCard" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 
     <style name="Theme.Mininetflix" parent="Base.Theme.Mininetflix" />

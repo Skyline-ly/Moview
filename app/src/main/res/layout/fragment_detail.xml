@@ -3,15 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="#FFFFFF">
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Hero: backdrop image, a dark gradient scrim, and the title overlaid on top -->
+        <!-- Hero: backdrop image + centered play overlay -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="240dp">
@@ -25,88 +24,125 @@
                 android:contentDescription="Movie backdrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/scrim_bottom" />
-
-            <TextView
-                android:id="@+id/detail_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:padding="16dp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="#FFFFFFFF"
-                android:textSize="26sp"
-                android:textStyle="bold"
-                tools:text="The Mummy" />
+            <ImageButton
+                android:id="@+id/hero_play_button"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_play_circle"
+                android:background="@null"
+                android:contentDescription="Play trailer"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </FrameLayout>
 
-        <!-- Content below the hero -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Meta row: rating  •  year -->
+            <TextView
+                android:id="@+id/detail_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="War Machine" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal"
                 android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/detail_rating"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#E50914"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                <TextView android:id="@+id/detail_release"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#B0B0B0" android:textSize="15sp" tools:text="2026" />
+                <TextView android:id="@+id/detail_dot"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp" android:layout_marginEnd="10dp"
+                    android:text="•" android:textColor="#808080" android:textSize="15sp" />
+                <TextView android:id="@+id/detail_rating"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textColor="#E50914" android:textSize="15sp" android:textStyle="bold"
                     tools:text="★ 8.0" />
-
-                <TextView
-                    android:id="@+id/detail_dot"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:text="•"
-                    android:textColor="#9E9E9E"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/detail_release"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#8A000000"
-                    android:textSize="16sp"
-                    tools:text="2026" />
             </LinearLayout>
 
-            <!-- Section label -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/play_trailer_button"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
                 android:layout_marginTop="20dp"
-                android:text="OVERVIEW"
-                android:textColor="#8A000000"
-                android:textSize="13sp"
+                android:text="▶ Play Trailer"
+                android:textAllCaps="false"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:letterSpacing="0.08" />
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#E50914"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/detail_overview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textColor="#DE000000"
-                android:textSize="16sp"
+                android:layout_marginTop="20dp"
+                android:textColor="#E5E5E5"
+                android:textSize="15sp"
                 android:lineSpacingExtra="4dp"
-                tools:text="The young daughter of a journalist disappears into the desert…" />
+                tools:text="An Army Ranger candidate and his team encounter an otherworldly killing machine." />
 
+            <!-- Action row: My List · Share -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout android:id="@+id/my_list_button"
+                    android:layout_width="0dp" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:gravity="center"
+                    android:padding="12dp"
+                    android:clickable="true" android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:src="@drawable/ic_add"
+                        android:contentDescription="Add to My List" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" android:text="My List"
+                        android:textColor="#FFFFFF" android:textSize="12sp" />
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/share_button"
+                    android:layout_width="0dp" android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" android:gravity="center"
+                    android:padding="12dp"
+                    android:clickable="true" android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:src="@drawable/ic_share"
+                        android:contentDescription="Share" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp" android:text="Share"
+                        android:textColor="#FFFFFF" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:layout_marginTop="24dp" android:background="#333333" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="20dp" android:text="MORE INFO"
+                android:textColor="#808080" android:textSize="13sp"
+                android:textStyle="bold" android:letterSpacing="0.08" />
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Cast, runtime and recommendations will land in a future sprint."
+                android:textColor="#808080" android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
